@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="820" viewBox="0 0 1440 820" role="img" aria-labelledby="title desc">
+  <title id="title">SWISHH CONTROL CENTER dashboard preview</title>
+  <desc id="desc">Illustrative dashboard with placeholder system metrics. No real device information.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#111a20"/><stop offset="1" stop-color="#080c10"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#25d6df"/><stop offset="1" stop-color="#9272ff"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#16bed0" stop-opacity=".18"/><stop offset="1" stop-color="#16bed0" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1440" height="820" rx="28" fill="url(#bg)"/><circle cx="720" cy="360" r="520" fill="url(#glow)"/>
+  <rect x="18" y="18" width="236" height="784" rx="20" fill="#0c1117" stroke="#26323c"/>
+  <rect x="38" y="38" width="42" height="42" rx="12" fill="url(#accent)"/><path d="M48 60h8l5-12 6 22 5-10h7" fill="none" stroke="#081116" stroke-width="3"/>
+  <text x="94" y="58" fill="#f0f6fa" font-family="Segoe UI,Arial" font-size="20" font-weight="700" letter-spacing="2">SWISHH</text><text x="94" y="77" fill="#7d8c99" font-family="Segoe UI,Arial" font-size="10" letter-spacing="3">CONTROL CENTER</text>
+  <g font-family="Segoe UI,Arial" font-size="16" fill="#9ba8b4"><rect x="30" y="116" width="212" height="48" rx="12" fill="#1b3038" stroke="#28545d"/><text x="52" y="146" fill="#ecfaff" font-weight="600">▦　Overview</text><text x="52" y="204">▣　My computer</text><text x="52" y="256">⌁　Network</text><text x="52" y="308">◷　Processes</text><text x="52" y="360">ϟ　Maintenance</text><text x="52" y="412">▤　Servers</text><text x="52" y="490">⚙　Settings</text></g>
+  <g font-family="Segoe UI,Arial"><text x="292" y="72" fill="#98a8b4" font-size="13" letter-spacing="2">SWISHH  ·  LOCAL SYSTEM DASHBOARD</text><text x="292" y="128" fill="#f4f7fa" font-size="38" font-weight="650">Welcome back</text><text x="292" y="160" fill="#8997a3" font-size="17">A clear view of your PC at a glance.</text></g>
+  <g fill="#11171d" stroke="#29343d" stroke-width="1.5">
+    <rect x="292" y="194" width="535" height="202" rx="20"/><rect x="847" y="194" width="535" height="202" rx="20"/>
+    <rect x="292" y="414" width="535" height="202" rx="20"/><rect x="847" y="414" width="535" height="202" rx="20"/>
+    <rect x="292" y="636" width="535" height="126" rx="18"/><rect x="847" y="636" width="535" height="126" rx="18"/>
+  </g>
+  <g font-family="Segoe UI,Arial"><g fill="#42d2dd"><text x="324" y="242" font-size="15" letter-spacing="1">PROCESSOR</text><text x="324" y="282" fill="#eaf1f5" font-size="25" font-weight="600">System load</text><text x="324" y="320" fill="#8997a3" font-size="15">Local reading · example</text><text x="324" y="365" fill="#eaf1f5" font-size="19">—</text></g><g fill="#aa8bff"><text x="879" y="242" font-size="15" letter-spacing="1">GRAPHICS</text><text x="879" y="282" fill="#eaf1f5" font-size="25" font-weight="600">Temperature</text><text x="879" y="320" fill="#8997a3" font-size="15">Local reading · example</text><text x="879" y="365" fill="#eaf1f5" font-size="19">—</text></g>
+  <g fill="#e9f0f5"><text x="324" y="462" fill="#42d2dd" font-size="15" letter-spacing="1">MEMORY</text><text x="324" y="502" font-size="25" font-weight="600">Utilization</text><text x="324" y="540" fill="#8997a3" font-size="15">Live values appear on your device</text><text x="324" y="585" font-size="19">—</text><text x="879" y="462" fill="#aa8bff" font-size="15" letter-spacing="1">STORAGE</text><text x="879" y="502" font-size="25" font-weight="600">Available space</text><text x="879" y="540" fill="#8997a3" font-size="15">Local volumes · example</text><text x="879" y="585" font-size="19">—</text></g>
+  <text x="326" y="684" fill="#f0f6fa" font-size="19" font-weight="600">Explore your system</text><text x="326" y="718" fill="#8997a3" font-size="15">Hardware · resources · device status</text><text x="881" y="684" fill="#f0f6fa" font-size="19" font-weight="600">Private by design</text><text x="881" y="718" fill="#8997a3" font-size="15">Preview values are intentionally omitted</text></g>
+  <g fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"><path d="M1222 322a70 70 0 0 1 140 0"/><path d="M1222 542a70 70 0 0 1 83-68"/></g><g font-family="Segoe UI,Arial" fill="#f2f7fa" text-anchor="middle"><text x="1292" y="320" font-size="32" font-weight="700">—</text><text x="1292" y="348" fill="#91a0ac" font-size="13">example</text><text x="1292" y="540" font-size="32" font-weight="700">—</text><text x="1292" y="568" fill="#91a0ac" font-size="13">example</text></g>
+  <text x="1360" y="790" text-anchor="end" fill="#60717e" font-family="Segoe UI,Arial" font-size="12">ILLUSTRATIVE PREVIEW · NO LIVE DEVICE DATA</text>
+</svg>

@@ -53,6 +53,7 @@ Launch the app and choose a section in the left navigation. System and network p
 
 - No personal device snapshot, local log, monitoring history, token, password, or private configuration is distributed in this repository.
 - `.env` files, logs, build outputs, and local machine state are excluded by `.gitignore`.
+- The network page checks reachability by sending ICMP probes to the local gateway and `1.1.1.1`. The application source contains no account telemetry or data-upload endpoint.
 - The app is intended for local use. Review source code and permissions before building or distributing modified versions.
 - Public availability does not grant permission to redistribute or relicense the code. No license is included yet.
 
@@ -117,9 +118,11 @@ npm run tauri -- build --bundles nsis
 
 - В репозиторий не включены личный снимок системы, локальные журналы, история мониторинга, токены, пароли или приватные настройки.
 - `.env`, журналы, результаты сборки и локальное состояние исключены через `.gitignore`.
+- Страница сети проверяет доступность шлюза и `1.1.1.1` с помощью ICMP-запросов. В исходном коде приложения нет телеметрии учётной записи или адреса загрузки пользовательских данных.
 - Приложение рассчитано на локальное использование. Перед сборкой или распространением изменённых версий проверьте исходный код и разрешения.
 - Публичный репозиторий сам по себе не даёт права распространять код или менять условия его использования. Лицензия пока не добавлена.
 
 ## Автоматическая сборка
 
 GitHub Actions собирает x64-установщик NSIS при отправке изменений и для pull request. Тег версии, например `v0.1.2`, запускает создание GitHub Release с установщиком.
+

@@ -40,8 +40,10 @@ jobs:
           if-no-files-found: error
 
       - name: Publish GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: (github.ref == 'refs/heads/main' && github.event.head_commit.message == 'release: publish v0.1.2') || (startsWith(github.ref, 'refs/tags/v') && github.ref_name != 'v0.1.2')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'v0.1.2' }}
+          target_commitish: main
           generate_release_notes: true
           files: src-tauri/target/release/bundle/nsis/*_x64-setup.exe

@@ -8,6 +8,7 @@ import {
   X, Zap,
 } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { localizeTree, type Language } from "./i18n";
 import "./App.css";
 
 type Disk = { name: string; mount: string; total: number; available: number };
@@ -41,6 +42,7 @@ function GaugeRing({ value, max = 100, suffix = "%", color = "#62d9e9", label = 
 }
 
 function App() {
+  const [language, setLanguage] = useState<Language>(() => localStorage.getItem("swishh.language") === "en" ? "en" : "ru");
   const [page, setPage] = useState<Page>("Обзор");
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const [network, setNetwork] = useState<NetworkStatus | null>(null);
@@ -59,7 +61,7 @@ function App() {
     try {
       const s = await invoke<Snapshot>("get_snapshot");
       setSnapshot(s); setLoadError("");
-      setHistory(old => [...old, { time: new Date().toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit", second: "2-digit" }), cpu: s.cpu_usage, ram: s.ram_total ? s.ram_used / s.ram_total * 100 : 0, gpu: s.gpu.utilization ?? 0 }].slice(-60));
+      setHistory(old => [...old, { time: new Date().toLocaleTimeString(language === "ru" ? "ru-RU" : "en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" }), cpu: s.cpu_usage, ram: s.ram_total ? s.ram_used / s.ram_total * 100 : 0, gpu: s.gpu.utilization ?? 0 }].slice(-60));
     } catch (e) { setLoadError(String(e)); }
   };
   const refreshNetwork = async () => {
@@ -70,12 +72,12 @@ function App() {
   };
   useEffect(() => { void refresh(); const timer = window.setInterval(() => void refresh(), interval * 1000); return () => window.clearInterval(timer); }, [interval]);
   useEffect(() => { if (page === "Сеть" && !network) void refreshNetwork(); }, [page]);
-  useEffect(() => { document.documentElement.style.setProperty("--accent", accent); document.documentElement.dataset.theme = light ? "light" : "dark"; document.documentElement.dataset.motion = animations ? "on" : "off"; localStorage.setItem("swishh.theme", light ? "light" : "dark"); localStorage.setItem("swishh.accent", accent); localStorage.setItem("swishh.animations", animations ? "on" : "off"); }, [accent, light, animations]);
+  useEffect(() => { document.documentElement.style.setProperty("--accent", accent); document.documentElement.dataset.theme = light ? "light" : "dark"; document.documentElement.dataset.motion = animations ? "on" : "off"; document.documentElement.lang = language; localStorage.setItem("swishh.theme", light ? "light" : "dark"); localStorage.setItem("swishh.accent", accent); localStorage.setItem("swishh.animations", animations ? "on" : "off"); localStorage.setItem("swishh.language", language); }, [accent, light, animations, language]);
 
   const netSpeed = useMemo(() => snapshot?.networks.reduce((a, n) => ({ rx: a.rx + n.rx_rate, tx: a.tx + n.tx_rate }), { rx: 0, tx: 0 }) ?? { rx: 0, tx: 0 }, [snapshot]);
   const filteredProcesses = snapshot?.processes.filter(p => p.name.toLowerCase().includes(search.toLowerCase())) ?? [];
 
-  return <div className="app-shell">
+  return localizeTree(<div className="app-shell">
     <aside className="sidebar">
       <div className="brand"><div className="brand-mark"><Activity size={17}/></div><div><b>SWISHH</b><small>CONTROL CENTER</small></div><span className="brand-live" /></div>
       <div className="nav-label">МОНИТОРИНГ</div>
@@ -86,7 +88,7 @@ function App() {
     </aside>
 
     <main className="main-area">
-      <header className="topbar"><div className="breadcrumbs"><span>Панель управления</span><ChevronRight size={14}/><b>{activeSection}</b></div><div className="top-actions"><div className="live-label"><span className="online-dot"/>ДАННЫЕ В РЕАЛЬНОМ ВРЕМЕНИ</div><span className="top-separator"/><button className="icon-button" title="Обновить" onClick={() => { void refresh(); if (page === "Сеть") void refreshNetwork(); }}><RefreshCw size={16}/></button><button className="icon-button" title="Настройки" onClick={() => setPage("Настройки")}><Settings size={17}/></button></div></header>
+      <header className="topbar"><div className="breadcrumbs"><span>Панель управления</span><ChevronRight size={14}/><b>{activeSection}</b></div><div className="top-actions"><div className="live-label"><span className="online-dot"/>ДАННЫЕ В РЕАЛЬНОМ ВРЕМЕНИ</div><span className="top-separator"/><button className="language-button" onClick={() => setLanguage(language === "ru" ? "en" : "ru")} title={language === "ru" ? "Switch to English" : "Переключить на русский"}><Globe2 size={15}/>{language === "ru" ? "EN" : "RU"}</button><button className="icon-button" title="Обновить" onClick={() => { void refresh(); if (page === "Сеть") void refreshNetwork(); }}><RefreshCw size={16}/></button><button className="icon-button" title="Настройки" onClick={() => setPage("Настройки")}><Settings size={17}/></button></div></header>
       <div className="content" key={page}>
         <div className="page-heading"><div><div className="eyebrow"><span className="eyebrow-line"/>{page === "Обзор" ? "СИСТЕМА · МОНИТОРИНГ" : `SWISHH · ${page.toUpperCase()}`}</div><h1>{page === "Обзор" ? <>Всё под <em>контролем.</em></> : page}</h1><p>{headingSubtitle(page, snapshot)}</p></div>{page === "Сеть" && <button className="primary-button" disabled={busy} onClick={() => void refreshNetwork()}><RefreshCw className={busy ? "spinning" : ""} size={15}/>{busy ? "Обновление…" : "Обновить сеть"}</button>}</div>
         {loadError && <div className="error-banner"><CircleHelp size={17}/><span>Не удалось получить системные данные: {loadError}</span><button onClick={() => void refresh()}><RefreshCw size={14}/> Повторить</button></div>}
@@ -98,10 +100,10 @@ function App() {
         {page === "Обслуживание" && snapshot && <OptimizePage disks={snapshot.disks}/>}
         {page === "Серверы" && <ServersPage/>}
         {page === "Настройки" && <SettingsPage interval={interval} setInterval={v => { setIntervalSec(v); localStorage.setItem("swishh.interval", String(v)); }} accent={accent} setAccent={setAccent} light={light} setLight={setLight} animations={animations} setAnimations={setAnimations} snapshot={snapshot}/>}
-        <footer className="app-footer"><span><ShieldCheck size={13}/> Локальный мониторинг</span><span>{snapshot ? `Обновлено ${new Date().toLocaleTimeString("ru-RU")}` : "Ожидание подключения к датчикам"}</span></footer>
+        <footer className="app-footer"><span><ShieldCheck size={13}/> Локальный мониторинг</span><span>{snapshot ? `Обновлено ${new Date().toLocaleTimeString(language === "ru" ? "ru-RU" : "en-US")}` : "Ожидание подключения к датчикам"}</span></footer>
       </div>
     </main>
-  </div>;
+  </div>, language);
 }
 
 function headingSubtitle(page: Page, s: Snapshot | null) {

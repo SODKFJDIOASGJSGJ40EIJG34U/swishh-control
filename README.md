@@ -2,7 +2,7 @@
 
 **A local-first Windows system dashboard** built with Tauri, React, TypeScript, and Rust.
 
-SWISHH CONTROL CENTER brings common PC health and system information into one desktop interface. It is an independent project and is not affiliated with or endorsed by Microsoft or hardware vendors.
+SWISHH CONTROL CENTER is a local Windows monitoring and diagnostics dashboard. It helps users understand what is happening on their PC by bringing processor, memory, graphics, drive, process, and network information together. The network view lists local devices and current TCP connections; the server page reports Docker Engine status. Use it to spot resource load, check available disk space, and inspect local connectivity without switching between Windows tools. It does not currently clean files, terminate processes, or apply performance tweaks. It is an independent project and is not affiliated with or endorsed by Microsoft or hardware vendors.
 
 > Public build note: screenshots below are illustrative previews. They contain no live device information. The app reads selected system information from the computer where it runs; this repository does not contain the developer's monitoring history, private settings, or machine-specific data.
 
@@ -14,6 +14,7 @@ SWISHH CONTROL CENTER brings common PC health and system information into one de
 - Service and Docker status overview where supported.
 - Dark interface with scalable layout for 1920×1080 and 2K displays.
 - Windows desktop app packaged with Tauri.
+- Russian and English interface; switch languages from the top bar.
 
 Some readings depend on Windows APIs and available hardware. VPN, optimization, or repair actions are not represented as available unless explicitly implemented in the current build.
 
@@ -59,7 +60,7 @@ Launch the app and choose a section in the left navigation. System and network p
 
 ## Automation
 
-GitHub Actions builds the x64 NSIS package on pushes and pull requests. Pushing a version tag such as `v0.1.2` creates a GitHub Release and attaches the installer.
+GitHub Actions builds the x64 NSIS package on pushes and pull requests. Pushing a version tag creates a GitHub Release and attaches the installer.
 
 ---
 
@@ -68,6 +69,8 @@ GitHub Actions builds the x64 NSIS package on pushes and pull requests. Pushing 
 **Локальная панель состояния Windows-компьютера** на Tauri, React, TypeScript и Rust.
 
 SWISHH CONTROL CENTER собирает основные сведения о системе в одном настольном приложении. Это независимый проект, не связанный с Microsoft и производителями оборудования.
+
+Это локальная панель мониторинга и диагностики Windows. Она помогает понять, что происходит с компьютером: показывает процессор, память, графику, диски, процессы и сетевую активность. На странице сети доступны локальные устройства и текущие TCP-подключения, а в разделе серверов — состояние Docker Engine. Панель полезна, чтобы заметить высокую нагрузку, проверить свободное место и посмотреть состояние локальной сети без перехода между системными окнами Windows. Сейчас приложение не очищает файлы, не завершает процессы и не применяет автоматические настройки производительности.
 
 > Для публичной версии: скриншоты ниже — демонстрационные макеты. В них нет актуальных данных компьютера. Приложение локально получает отдельные сведения о системе, на которой запущено; в репозитории нет личной истории мониторинга, приватных настроек или снимка компьютера разработчика.
 
@@ -79,6 +82,7 @@ SWISHH CONTROL CENTER собирает основные сведения о си
 - Обзор служб и Docker, если они доступны.
 - Тёмный интерфейс с адаптацией под разрешения 1920×1080 и 2K.
 - Настольная сборка для Windows на Tauri.
+- Русский и английский интерфейс с переключателем в верхней панели.
 
 Некоторые показатели зависят от API Windows и установленного оборудования. Возможности VPN, оптимизации и восстановления доступны только в том случае, если они реализованы в текущей версии.
 
@@ -124,5 +128,4 @@ npm run tauri -- build --bundles nsis
 
 ## Автоматическая сборка
 
-GitHub Actions собирает x64-установщик NSIS при отправке изменений и для pull request. Тег версии, например `v0.1.2`, запускает создание GitHub Release с установщиком.
-
+GitHub Actions собирает x64-установщик NSIS при отправке изменений и для pull request. Тег версии запускает создание GitHub Release с установщиком.

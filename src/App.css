@@ -41,3 +41,5 @@ h1,h2,h3,.page-heading h1,.metric-heading h3,.ring-center strong,.panel-heading 
 }
 @media(min-width:1800px) and (min-height:1100px){.content{max-width:2100px;padding:46px 58px 28px}.page-heading h1{font-size:42px}.metric-card{min-height:232px}.ring-wrap{width:154px;height:154px}.topology-canvas{height:530px}.topo-node b{font-size:15px}.topo-node span,.topo-node .node-ip{font-size:14px}.panel{border-radius:15px}}
 #root,#root *{font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif!important}#root .mono,#root .topo-node .node-ip{font-family:"Cascadia Code","Consolas",monospace!important}
+/* Compact language switch in the top bar */
+.language-button{height:30px;min-width:48px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 9px;border:1px solid #2c3740;border-radius:8px;background:#131a20;color:#b9c4ce;font-size:10px;font-weight:700;letter-spacing:.5px;transition:all .18s}.language-button:hover{border-color:var(--accent);color:#effbff;background:#182329}.language-button svg{color:var(--accent)}
